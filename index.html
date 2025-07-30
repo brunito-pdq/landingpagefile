@@ -686,6 +686,18 @@
             </form>
           </div>
         </div>
+        <div id="success-message" style="display:none;">
+          <h3>Tudo Certo!</h3>
+          <p style="color: #a7f3d0">
+            Sua planilha está a caminho. O download começará automaticamente em alguns segundos.
+            Caso não esteja demorando,
+            <a href="https://drive.google.com/uc?export=download&id=1sIxyFIhxtAdYRFQZ_yoxvmyAE2F9yrXd"
+              style="color: #10B981; text-decoration: underline;" download>
+              clique aqui
+            </a>
+            para baixar.
+          </p>
+        </div>
 
         <div class="garantia">
           <div class="garantia-item">
@@ -827,10 +839,6 @@
       }
 
       function triggerDownload() {
-        // Exibe uma mensagem indicando que a planilha foi enviada
-        const downloadMessage = document.createElement('p');
-        downloadMessage.textContent = "Sua planilha está a caminho. O download começará automaticamente em alguns segundos. Caso não esteja demorando, ";
-
         // Cria o link para o download direto
         const downloadLink = document.createElement('a');
         downloadLink.href = 'https://drive.google.com/uc?export=download&id=1sIxyFIhxtAdYRFQZ_yoxvmyAE2F9yrXd'; // Link do Google Drive
