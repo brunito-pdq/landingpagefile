@@ -446,6 +446,14 @@
       color: var(--cor-texto-dark-secundario);
       border-top: 1px solid var(--cor-borda-dark);
     }
+
+    .cta-button.final svg {
+      width: 1.5em;
+      height: 1.5em;
+      min-width: 1.5em;
+      min-height: 1.5em;
+      vertical-align: middle;
+    }
   </style>
 </head>
 
@@ -674,8 +682,8 @@
                 <small class="error-message" id="telefone-error"></small>
               </div>
               <button type="submit" class="cta-button final" id="submit-button">
-                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                  stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                  stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"
                   style="width: 1.5rem; height: 1.5rem;">
                   <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
                   <polyline points="7 10 12 15 17 10"></polyline>
@@ -685,19 +693,19 @@
               </button>
             </form>
           </div>
-        
-        <div id="success-message" style="display:none;">
-          <h3>Tudo Certo!</h3>
-          <p style="color: #a7f3d0">
-            Sua planilha está a caminho. O download começará automaticamente em alguns segundos.
-            Caso não esteja demorando,
-            <a href="https://drive.google.com/uc?export=download&id=1sIxyFIhxtAdYRFQZ_yoxvmyAE2F9yrXd"
-              style="color: #10B981; text-decoration: underline;" download>
-              clique aqui
-            </a>
-            para baixar.
-          </p>
-        </div>
+
+          <div id="success-message" style="display:none;">
+            <h3>Tudo Certo!</h3>
+            <p style="color: #a7f3d0">
+              Sua planilha está a caminho. O download começará automaticamente em alguns segundos.
+              Caso não esteja demorando,
+              <a href="https://drive.google.com/uc?export=download&id=1sIxyFIhxtAdYRFQZ_yoxvmyAE2F9yrXd"
+                style="color: #10B981; text-decoration: underline;" download>
+                clique aqui
+              </a>
+              para baixar.
+            </p>
+          </div>
         </div>
         <div class="garantia">
           <div class="garantia-item">
@@ -759,19 +767,19 @@
             headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
           })
-          .then(response => response.ok ? response.json() : Promise.reject('Erro na resposta'))
-          .then(data => {
-            console.log('Success:', data);
-            formContent.style.display = 'none';
-            successMessage.style.display = 'block';
-            triggerDownload();
-          })
-          .catch(error => {
-            console.error('Error:', error);
-            alert("Ocorreu um erro ao enviar seus dados. Por favor, tente novamente.");
-            submitButton.disabled = false;
-            submitButton.textContent = 'QUERO MINHA PLANILHA E MEUS LUCROS AGORA!';
-          });
+            .then(response => response.ok ? response.json() : Promise.reject('Erro na resposta'))
+            .then(data => {
+              console.log('Success:', data);
+              formContent.style.display = 'none';
+              successMessage.style.display = 'block';
+              triggerDownload();
+            })
+            .catch(error => {
+              console.error('Error:', error);
+              alert("Ocorreu um erro ao enviar seus dados. Por favor, tente novamente.");
+              submitButton.disabled = false;
+              submitButton.textContent = 'QUERO MINHA PLANILHA E MEUS LUCROS AGORA!';
+            });
         }
       });
 
@@ -829,4 +837,5 @@
     });
   </script>
 </body>
+
 </html>
