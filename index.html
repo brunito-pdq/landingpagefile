@@ -835,27 +835,6 @@
 
         return isValid;
       }
-      function triggerDownload() {
-        // Cria a mensagem de sucesso
-        const downloadMessage = document.createElement('p');
-        downloadMessage.textContent = "Sua planilha está a caminho. O download começará automaticamente em alguns segundos. Caso não esteja demorando, ";
-
-        // Cria o link para o download direto
-        const downloadLink = document.createElement('a');
-        downloadLink.href = 'https://drive.google.com/uc?export=download&id=1sIxyFIhxtAdYRFQZ_yoxvmyAE2F9yrXd'; // Link do Google Drive
-        downloadLink.textContent = "clique aqui";
-        downloadLink.style.color = "#10B981";
-        downloadLink.style.textDecoration = "underline";
-        downloadLink.target = "_blank"; // Para abrir em nova guia (opcional)
-
-        // Adiciona o link à mensagem
-        downloadMessage.appendChild(downloadLink);
-
-        // Exibe a mensagem de sucesso com o link para download
-        successMessage.appendChild(downloadMessage);
-        successMessage.style.display = 'block';  // Exibe a mensagem de sucesso
-        formContent.style.display = 'none';     // Esconde o formulário
-      }
 
     });
   </script>
