@@ -788,6 +788,14 @@
         const nameField = document.getElementById('nome');
         const emailField = document.getElementById('email');
         const telefoneField = document.getElementById('telefone');
+        telefoneField.addEventListener('input', function (e) {
+          let v = e.target.value.replace(/\D/g, ''); // Remove tudo que não for número
+          v = v.slice(0, 11); // Limita a 11 dígitos
+          if (v.length >= 1) v = '(' + v;
+          if (v.length >= 3) v = v.slice(0, 3) + ') ' + v.slice(3);
+          if (v.length >= 9) v = v.slice(0, 10) + '-' + v.slice(10);
+          e.target.value = v;
+        });
         const emailError = document.getElementById('email-error');
         const telefoneError = document.getElementById('telefone-error');
 
@@ -815,7 +823,7 @@
         }
 
         // Validar Telefone
-        const telefoneRegex = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/;
+        const telefoneRegex = /^\(\d{2}\)\s?\d{5}-\d{4}$/;
         if (!telefoneField.value.trim() || !telefoneRegex.test(telefoneField.value)) {
           telefoneField.style.borderColor = '#EF4444';
           isValid = false;
