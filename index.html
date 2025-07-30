@@ -852,7 +852,8 @@
 
         // Exibe a mensagem de sucesso com o link para download
         successMessage.appendChild(downloadMessage);
-        document.body.removeChild(form);
+        successMessage.style.display = 'block';
+        formContent.style.display = 'none';
       }
 
     });
