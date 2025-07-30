@@ -674,7 +674,8 @@
                 <input type="text" id="nome" name="nome" placeholder="Seu Nome" required>
               </div>
               <div class="form-group">
-                <input type="email" id="email" name="email" placeholder="Seu Melhor E-mail exemplo@exemplo.com.br" required>
+                <input type="email" id="email" name="email" placeholder="Seu Melhor E-mail exemplo@exemplo.com.br"
+                  required>
                 <small class="error-message" id="email-error"></small>
               </div>
               <div class="form-group">
@@ -791,10 +792,20 @@
         telefoneField.addEventListener('input', function (e) {
           let v = e.target.value.replace(/\D/g, ''); // Remove tudo que não for número
           v = v.slice(0, 11); // Limita a 11 dígitos
-          if (v.length >= 1) v = '(' + v;
-          if (v.length >= 3) v = v.slice(0, 3) + ') ' + v.slice(3);
-          if (v.length >= 9) v = v.slice(0, 10) + '-' + v.slice(10);
+
+          // Aplica a máscara
+          if (v.length > 0) v = '(' + v;
+          if (v.length > 2) v = v.slice(0, 3) + ') ' + v.slice(3);
+          if (v.length > 8) v = v.slice(0, 10) + '-' + v.slice(10);
+
           e.target.value = v;
+        });
+
+        telefoneField.addEventListener('keypress', function (e) {
+          // Permite apenas números
+          if (!/[0-9]/.test(e.key)) {
+            e.preventDefault();
+          }
         });
         const emailError = document.getElementById('email-error');
         const telefoneError = document.getElementById('telefone-error');
