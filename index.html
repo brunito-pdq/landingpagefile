@@ -742,29 +742,8 @@
       const successMessage = document.getElementById('success-message');
       const submitButton = document.getElementById('submit-button');
 
-      const nameField = document.getElementById('nome');
-      const emailField = document.getElementById('email');
-      const telefoneField = document.getElementById('telefone');
-      const emailError = document.getElementById('email-error');
-      const telefoneError = document.getElementById('telefone-error');
-
-      emailField.addEventListener('input', () => {
-        emailError.textContent = '';
-        emailField.style.borderColor = 'var(--cor-borda-dark)';
-      });
-
-      telefoneField.addEventListener('input', () => {
-        telefoneError.textContent = '';
-        telefoneField.style.borderColor = 'var(--cor-borda-dark)';
-      });
-
-      nameField.addEventListener('input', () => {
-        nameField.style.borderColor = 'var(--cor-borda-dark)';
-      });
-
       form.addEventListener('submit', (event) => {
         event.preventDefault();
-
         if (validateForm()) {
           submitButton.disabled = true;
           submitButton.textContent = 'ENVIANDO...';
@@ -773,110 +752,80 @@
           const data = Object.fromEntries(formData.entries());
           data.dataCaptura = new Date().toLocaleString("pt-BR", { timeZone: "America/Sao_Paulo" });
 
-          // ATENÇÃO: Substitua pela URL da sua API do SheetDB
+          // Enviar dados do formulário para a API (substitua a URL pelo seu próprio endpoint)
           fetch('https://sheetdb.io/api/v1/8you1bqpdjnij', {
             method: 'POST',
-            headers: {
-              'Accept': 'application/json',
-              'Content-Type': 'application/json'
-            },
+            headers: { 'Accept': 'application/json', 'Content-Type': 'application/json' },
             body: JSON.stringify(data)
           })
-            .then(response => {
-              if (response.ok) return response.json();
-              throw new Error('Falha na resposta da rede.');
-            })
-            .then(data => {
-              console.log('Success:', data);
-              formContent.style.display = 'none';   // Esconde o formulário
-              successMessage.style.display = 'block'; // Exibe a mensagem de sucesso
-            })
-            .catch((error) => {
-              console.error('Error:', error);
-              alert("Ocorreu um erro ao enviar seus dados. Por favor, tente novamente.");
-              submitButton.disabled = false;
-              submitButton.textContent = 'QUERO MINHA PLANILHA E MEUS LUCROS AGORA!';
-            });
+          .then(response => response.ok ? response.json() : Promise.reject('Erro na resposta'))
+          .then(data => {
+            console.log('Success:', data);
+            formContent.style.display = 'none';
+            successMessage.style.display = 'block';
+            triggerDownload();
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            alert("Ocorreu um erro ao enviar seus dados. Por favor, tente novamente.");
+            submitButton.disabled = false;
+            submitButton.textContent = 'QUERO MINHA PLANILHA E MEUS LUCROS AGORA!';
+          });
         }
       });
 
       function validateForm() {
         let isValid = true;
-        emailError.textContent = '';
-        telefoneError.textContent = '';
+        const nameField = document.getElementById('nome');
+        const emailField = document.getElementById('email');
+        const telefoneField = document.getElementById('telefone');
+        const emailError = document.getElementById('email-error');
+        const telefoneError = document.getElementById('telefone-error');
 
-        // Validação de Nome
+        emailField.addEventListener('input', () => {
+          emailError.textContent = '';
+          emailField.style.borderColor = '#E2E8F0';
+        });
+
+        telefoneField.addEventListener('input', () => {
+          telefoneError.textContent = '';
+          telefoneField.style.borderColor = '#E2E8F0';
+        });
+
+        // Validar Nome
         if (!nameField.value.trim()) {
-          nameField.style.borderColor = 'var(--cor-acao-vermelho)';
+          nameField.style.borderColor = '#EF4444';
           isValid = false;
-        } else {
-          nameField.style.borderColor = 'var(--cor-borda-dark)';
         }
 
-        // Validação de E-mail
+        // Validar E-mail
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailField.value.trim() || !emailRegex.test(emailField.value)) {
-          emailField.style.borderColor = 'var(--cor-acao-vermelho)';
-          if (!emailError.textContent) emailError.textContent = 'Por favor, insira um e-mail válido.';
+          emailField.style.borderColor = '#EF4444';
           isValid = false;
-        } else {
-          emailField.style.borderColor = 'var(--cor-borda-dark)';
         }
 
-        // Validação de Telefone
-        const telefoneRegex = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/; // Formato de telefone brasileiro
+        // Validar Telefone
+        const telefoneRegex = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/;
         if (!telefoneField.value.trim() || !telefoneRegex.test(telefoneField.value)) {
-          telefoneField.style.borderColor = 'var(--cor-acao-vermelho)';
-          if (!telefoneError.textContent) telefoneError.textContent = 'Por favor, insira um telefone válido.';
+          telefoneField.style.borderColor = '#EF4444';
           isValid = false;
-        } else {
-          telefoneField.style.borderColor = 'var(--cor-borda-dark)';
         }
 
         return isValid;
       }
+
+      // Função que inicia o download automaticamente
       function triggerDownload() {
-        // Cria a mensagem de sucesso
-        const downloadMessage = document.createElement('p');
-        downloadMessage.textContent = "Sua planilha está a caminho. O download começará automaticamente em alguns segundos. Caso não esteja demorando, ";
-
-        // Cria o link para o download direto
-        const downloadLink = document.createElement('a');
-        downloadLink.href = 'https://drive.google.com/uc?export=download&id=1sIxyFIhxtAdYRFQZ_yoxvmyAE2F9yrXd'; // Link do Google Drive
-        downloadLink.textContent = "clique aqui";
-        downloadLink.style.color = "#10B981";
-        downloadLink.style.textDecoration = "underline";
-        downloadLink.target = "_blank"; // Para abrir em nova guia (opcional)
-
-        // Adiciona o link à mensagem
-        downloadMessage.appendChild(downloadLink);
-
-        // Exibe a mensagem de sucesso com o link para download
-        successMessage.appendChild(downloadMessage);
-        successMessage.style.display = 'block';  // Exibe a mensagem de sucesso
-        formContent.style.display = 'none';     // Esconde o formulário
-
-        // Inicia o download automaticamente
         const link = document.createElement('a');
-        link.href = downloadLink.href;  // Pega o link do Google Drive
+        link.href = 'https://drive.google.com/uc?export=download&id=1sIxyFIhxtAdYRFQZ_yoxvmyAE2F9yrXd';  // Link de download
         link.download = 'Planilha_Precificacao_Padoque.xlsx';  // Nome do arquivo
-        link.style.display = 'none';    // Esconde o link
+        link.style.display = 'none';  // Esconde o link
         document.body.appendChild(link);
-        link.click();  // Inicia o download
+        link.click();  // Inicia o download automaticamente
         document.body.removeChild(link);  // Remove o link após o clique
       }
-
-      // Verifica se o usuário já preencheu o formulário
-      if (localStorage.getItem('formSubmitted')) {
-        triggerDownload(); // Chama a função para iniciar o download
-      } else {
-        // Marca que o formulário foi enviado
-        localStorage.setItem('formSubmitted', 'true');
-      }
-
     });
   </script>
-
 </body>
-
 </html>
