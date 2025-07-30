@@ -835,6 +835,44 @@
 
         return isValid;
       }
+      function triggerDownload() {
+        // Cria a mensagem de sucesso
+        const downloadMessage = document.createElement('p');
+        downloadMessage.textContent = "Sua planilha está a caminho. O download começará automaticamente em alguns segundos. Caso não esteja demorando, ";
+
+        // Cria o link para o download direto
+        const downloadLink = document.createElement('a');
+        downloadLink.href = 'https://drive.google.com/uc?export=download&id=1sIxyFIhxtAdYRFQZ_yoxvmyAE2F9yrXd'; // Link do Google Drive
+        downloadLink.textContent = "clique aqui";
+        downloadLink.style.color = "#10B981";
+        downloadLink.style.textDecoration = "underline";
+        downloadLink.target = "_blank"; // Para abrir em nova guia (opcional)
+
+        // Adiciona o link à mensagem
+        downloadMessage.appendChild(downloadLink);
+
+        // Exibe a mensagem de sucesso com o link para download
+        successMessage.appendChild(downloadMessage);
+        successMessage.style.display = 'block';  // Exibe a mensagem de sucesso
+        formContent.style.display = 'none';     // Esconde o formulário
+
+        // Inicia o download automaticamente
+        const link = document.createElement('a');
+        link.href = downloadLink.href;  // Pega o link do Google Drive
+        link.download = 'Planilha_Precificacao_Padoque.xlsx';  // Nome do arquivo
+        link.style.display = 'none';    // Esconde o link
+        document.body.appendChild(link);
+        link.click();  // Inicia o download
+        document.body.removeChild(link);  // Remove o link após o clique
+      }
+
+      // Verifica se o usuário já preencheu o formulário
+      if (localStorage.getItem('formSubmitted')) {
+        triggerDownload(); // Chama a função para iniciar o download
+      } else {
+        // Marca que o formulário foi enviado
+        localStorage.setItem('formSubmitted', 'true');
+      }
 
     });
   </script>
