@@ -482,7 +482,7 @@
         <a href="#cta-final" class="cta-button primary">
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
             stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            style="width: 1.25rem; height: 1.25rem;">
+            style="width: 3vw; height: 3vw; max-width: 24px; max-height: 24px;">
             <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
             <polyline points="7 10 12 15 17 10"></polyline>
             <line x1="12" x2="12" y1="15" y2="3"></line>
@@ -659,7 +659,6 @@
           style="color: var(--cor-texto-dark-secundario); font-size: 1.25rem; max-width: 800px; margin: 1.5rem auto 0 auto;">
           Clique no botão abaixo para baixar <strong>AGORA</strong> a sua <strong>Planilha Gratuíta do Método
             Padoque</strong> e comece a precificar com inteligência e lucro!</p>
-
         <div id="form-container">
           <div id="form-content">
             <form id="lead-form" novalidate>
@@ -669,6 +668,10 @@
               <div class="form-group">
                 <input type="email" id="email" name="email" placeholder="Seu Melhor E-mail" required>
                 <small class="error-message" id="email-error"></small>
+              </div>
+              <div class="form-group">
+                <input type="text" id="telefone" name="telefone" placeholder="Seu Telefone" required>
+                <small class="error-message" id="telefone-error"></small>
               </div>
               <button type="submit" class="cta-button final" id="submit-button">
                 <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -682,47 +685,47 @@
               </button>
             </form>
           </div>
+        </div>
+        <div id="success-message" style="display:none;">
+          <h3>Tudo Certo!</h3>
+          <p style="color: #a7f3d0">
+            Sua planilha está a caminho. O download começará automaticamente em alguns segundos.
+            Caso não esteja demorando,
+            <a href="https://github.com/brunito-pdq/landingpagefile/raw/refs/heads/main/Precifica%C3%A7%C3%A3o%20Padoque.xlsx"
+              style="color: #10B981; text-decoration: underline;" download>
+              clique aqui
+            </a>
+            para baixar.
+          </p>
+        </div>
 
-          <div id="success-message" style="display:none;">
-            <h3>Tudo Certo!</h3>
-            <p style="color: #a7f3d0">
-              Sua planilha está a caminho. O download começará automaticamente em alguns segundos.
-              Caso não esteja demorando,
-              <a href="https://github.com/brunito-pdq/landingpagefile/raw/refs/heads/main/Precifica%C3%A7%C3%A3o%20Padoque.xlsx"
-                style="color: #10B981; text-decoration: underline;" download>
-                clique aqui
-              </a>
-              para baixar.
-            </p>
+        <div class="garantia">
+          <div class="garantia-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
+              <path d="M22 4L12 14.01l-3-3" />
+            </svg>
+            <span>100% Grátis</span>
           </div>
-
-          <div class="garantia">
-            <div class="garantia-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M22 11.08V12a10 10 0 11-5.93-9.14" />
-                <path d="M22 4L12 14.01l-3-3" />
-              </svg>
-              <span>100% Grátis</span>
-            </div>
-            <div class="garantia-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
-              </svg>
-              <span>Seus dados estão seguros</span>
-            </div>
-            <div class="garantia-item">
-              <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
-                stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
-                <path d="M7 10l5 5 5-5" />
-                <path d="M12 15V3" />
-              </svg>
-              <span>Download instantâneo</span>
-            </div>
+          <div class="garantia-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+            </svg>
+            <span>Seus dados estão seguros</span>
+          </div>
+          <div class="garantia-item">
+            <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none"
+              stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M21 15v4a2 2 0 01-2 2H5a2 2 0 01-2-2v-4" />
+              <path d="M7 10l5 5 5-5" />
+              <path d="M12 15V3" />
+            </svg>
+            <span>Download instantâneo</span>
           </div>
         </div>
+      </div>
     </section>
   </main>
 
@@ -742,12 +745,20 @@
 
       const nameField = document.getElementById('nome');
       const emailField = document.getElementById('email');
+      const telefoneField = document.getElementById('telefone');
       const emailError = document.getElementById('email-error');
+      const telefoneError = document.getElementById('telefone-error');
 
       emailField.addEventListener('input', () => {
         emailError.textContent = '';
         emailField.style.borderColor = 'var(--cor-borda-dark)';
       });
+
+      telefoneField.addEventListener('input', () => {
+        telefoneError.textContent = '';
+        telefoneField.style.borderColor = 'var(--cor-borda-dark)';
+      });
+
       nameField.addEventListener('input', () => {
         nameField.style.borderColor = 'var(--cor-borda-dark)';
       });
@@ -794,7 +805,9 @@
       function validateForm() {
         let isValid = true;
         emailError.textContent = '';
+        telefoneError.textContent = '';
 
+        // Validação de Nome
         if (!nameField.value.trim()) {
           nameField.style.borderColor = 'var(--cor-acao-vermelho)';
           isValid = false;
@@ -802,6 +815,7 @@
           nameField.style.borderColor = 'var(--cor-borda-dark)';
         }
 
+        // Validação de E-mail
         const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
         if (!emailField.value.trim() || !emailRegex.test(emailField.value)) {
           emailField.style.borderColor = 'var(--cor-acao-vermelho)';
@@ -811,13 +825,22 @@
           emailField.style.borderColor = 'var(--cor-borda-dark)';
         }
 
+        // Validação de Telefone
+        const telefoneRegex = /^\(?\d{2}\)?\s?\d{4,5}-?\d{4}$/; // Formato de telefone brasileiro
+        if (!telefoneField.value.trim() || !telefoneRegex.test(telefoneField.value)) {
+          telefoneField.style.borderColor = 'var(--cor-acao-vermelho)';
+          if (!telefoneError.textContent) telefoneError.textContent = 'Por favor, insira um telefone válido.';
+          isValid = false;
+        } else {
+          telefoneField.style.borderColor = 'var(--cor-borda-dark)';
+        }
+
         return isValid;
       }
 
       function triggerDownload() {
         const link = document.createElement('a');
-        // ATENÇÃO: Substitua pelo link direto do seu arquivo
-        link.href = 'https://github.com/brunito-pdq/landingpagefile/raw/main/Precifica%C3%A7%C3%A3o%20Padoque.xlsx';
+        link.href = 'https://github.com/brunito-pdq/landingpagefile/raw/refs/heads/main/Precifica%C3%A7%C3%A3o%20Padoque.xlsx';
         link.download = 'Planilha-Precificacao-Padoque.xlsx';
         link.style.display = 'none';
         document.body.appendChild(link);
